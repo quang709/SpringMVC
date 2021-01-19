@@ -99,7 +99,7 @@ public class AppConfiguration implements ApplicationContextAware  {
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/demodatabase?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/demodatabase2?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false");
         dataSource.setUsername( "root" );
         dataSource.setPassword( "root" );
         return dataSource;
