@@ -60,4 +60,18 @@ public class RoomController {
         roomRepository.deleteById(id);
         return "redirect:/room/list";
     }
+
+    @GetMapping("view/{id}")
+    public String Getview(Model model, @PathVariable("id")Long id){
+
+        model.addAttribute("Room" , roomRepository.findById(id).orElse(null));
+        model.addAttribute("RoomCategory",roomCategoryRepository.findAll());
+        return "room/view";
+    }
+
+    @PostMapping("search")
+    public String search(@RequestParam String search,Model model){
+        model.addAttribute("listRoom", roomRepository.findAllByNameContains(search));
+        return "room/list";
+    }
 }

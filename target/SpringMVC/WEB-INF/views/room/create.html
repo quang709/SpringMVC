@@ -10,13 +10,12 @@
 </p>
 <h2 th:text="${success}"></h2>
 <div id="form">
-    <form action="#" th:action="@{/room/create}" th:object="${Room}"
-          method="POST" novalidate="novalidate">
+    <form action="#" id="demoForm" th:action="@{/room/create}" th:object="${Room}"
+          method="POST" >
         <input type="hidden" th:field="*{id}"/>
         <div>
             <label>Name</label>
-            <input type="text" oninput="checkValidate(0,this)" th:field="*{name}"/>
-            <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span>
+            <input type="text"   name="name" th:field="*{name}"/>
         </div>
 
         <div>
@@ -34,15 +33,25 @@
 </div>
 <footer th:replace="/layout :: footer"></footer>
 <script>
-    function checkValidate(index, inp){
-        const error = document.getElementsByClassName("error");
-        if(inp.value.length>0){
-            error[index].style.display = 'none';
-        }else {
-            error[index].style.display = 'block';
-        }
 
-    }
+
+
+        $().ready(function() {
+        $("#demoForm").validate({
+
+            rules: {
+                "name": {
+                    required: true,
+                    maxlength: 15,
+                    minlength: 8
+                }
+
+
+            }
+        });
+    });
+
+
 </script>
 </body>
 </html>

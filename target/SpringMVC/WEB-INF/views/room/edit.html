@@ -9,12 +9,12 @@
     </a>
 </p>
 <div id="form">
-    <form action="#" th:action="@{/room/edit}" th:object="${Room}"
+    <form action="#" id="demoForm" th:action="@{/room/view.html}" th:object="${Room}"
           method="POST" novalidate="novalidate">
         <input type="hidden" th:field="*{id}"/>
         <div>
             <label>Name</label>
-            <input type="text" th:field="*{name}"/>
+            <input type="text" name="name" th:field="*{name}"/>
         </div>
 
 
@@ -22,8 +22,10 @@
             <label>Class</label>
             <select name="roomCateoryId">
                 <th:block th:each="item : ${RoomCategory}">
+
                     <option th:if="${item.getId()== Room.getRoomCategory()}" th:value="${item.getId()}" th:text="${item.getName()}" selected></option>
                     <option th:unless="${item.getId()== Room.getRoomCategory()}" th:value="${item.getId()}" th:text="${item.getName()}"></option>
+
                 </th:block>
             </select>
         </div>
@@ -31,5 +33,26 @@
     </form>
 </div>
 <footer th:replace="/layout :: footer"></footer>
+<script>
+
+
+
+    $().ready(function() {
+        $("#demoForm").validate({
+
+            rules: {
+                "name": {
+                    required: true,
+                    maxlength: 15,
+                    minlength: 8
+                }
+
+
+            }
+        });
+    });
+
+
+</script>
 </body>
 </html>

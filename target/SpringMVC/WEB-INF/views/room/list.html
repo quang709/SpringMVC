@@ -18,7 +18,10 @@
         Add new Product
     </a>
 </p>
-
+<form th:action="@{/room/search}" method="post">
+    <input type="text" name="search" />
+    <button type="submit">Search</button>
+</form>
 <table id = "customers">
     <thead>
     <tr>
@@ -35,15 +38,14 @@
         <td th:text="${row.getRoomCategory().getName()}"></td>
         <td><a th:href="@{/room/edit/{id}(id=${row.getId()})}">edit</a></td>
         <td><a th:href="@{/room/delete/{id}(id=${row.getId()})}" onclick="return confirm('Ban co muon xoa khong?')">delete</a></td>
-        <td><a th:href="@{/room/{id}/view(id=${row.getId()})}">view</a></td>
+        <td><a th:href="@{/room/view/{id}(id=${row.getId()})}">view</a></td>
     </tr>
     </tbody>
 </table>
 
 <footer th:replace="/layout :: footer"></footer>
-<script>
 
 
-</script>
 </body>
+
 </html>
